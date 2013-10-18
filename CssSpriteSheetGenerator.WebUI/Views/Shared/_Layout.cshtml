@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        @Styles.Render("~/Content/Bootstrap")
+        @Styles.Render("~/Content/Site")
+        @Styles.Render("~/Content/Bootstrap-Responsive")
+        <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="">CSS Sprite Sheet Generator</a>
+
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#download">Download</a></li>
+                            <li><a href="#sourcecode">Source Code</a></li>
+                            <li><a href="#screenshots">Screenshots</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            @RenderBody()
+            <hr>
+
+            <footer>
+                <p class="text-right">&copy; <a href="http://tl.toofz.com/Contact">Leonard Thieu</a> 2013</p>
+            </footer>
+        </div>
+        @RenderSection("Scripts", false)
+    </body>
+</html>

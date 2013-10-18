@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Product Id="*" Language="1033" UpgradeCode="cfb8a00c-08f4-4472-9ef1-43dfcc6bdbdb"
+             Name="CSS Sprite Sheet Generator" Version="0.9.0"
+             Manufacturer="Leonard Thieu">
+        <Package InstallerVersion="300" Compressed="yes" />
+        <Media Id="1" Cabinet="Setup.cab" EmbedCab="yes" />
+        <UIRef Id="WixUI_InstallDir" />
+        <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+        <WixVariable Id="WixUIBannerBmp" Value="WixUIBannerBmp.bmp" />
+
+        <!-- Step 1: Define the directory structure -->
+        <Directory Id="TARGETDIR" Name="SourceDir">
+            <Directory Id="ProgramFilesFolder">
+                <Directory Id="INSTALLFOLDER" Name="CSS Sprite Sheet Generator" />
+            </Directory>
+            <Directory Id="ProgramMenuFolder">
+                <Directory Id="ApplicationProgramsFolder" Name="CSS Sprite Sheet Generator" />
+            </Directory>
+            <Directory Id="DesktopFolder" />
+        </Directory>
+
+        <!-- Step 2: Add files to your installer package -->
+        <DirectoryRef Id="INSTALLFOLDER">
+            <Component Id="CssSpriteSheetGenerator.Gui.Binaries" Guid="E3D2EFCE-A433-4084-9D3D-B9DB6518B533">
+                <File Id="CssSpriteSheetGenerator.Gui.exe" KeyPath="yes" Checksum="yes"
+                      Source="$(var.CssSpriteSheetGenerator.Gui.TargetDir)\CssSpriteSheetGenerator.Gui.exe" />
+                <File Id="CssSpriteSheetGenerator.Models.dll"
+                      Source="$(var.CssSpriteSheetGenerator.Gui.TargetDir)\CssSpriteSheetGenerator.Models.dll" />
+                <File Id="GalaSoft.MvvmLight.Extras.WPF4.dll"
+                      Source="$(var.CssSpriteSheetGenerator.Gui.TargetDir)\GalaSoft.MvvmLight.Extras.WPF4.dll" />
+                <File Id="GalaSoft.MvvmLight.WPF4.dll"
+                      Source="$(var.CssSpriteSheetGenerator.Gui.TargetDir)\GalaSoft.MvvmLight.WPF4.dll" />
+                <File Id="Mapper.dll"
+                      Source="$(var.CssSpriteSheetGenerator.Gui.TargetDir)\Mapper.dll" />
+                <File Id="Microsoft.Practices.ServiceLocation.dll"
+                      Source="$(var.CssSpriteSheetGenerator.Gui.TargetDir)\Microsoft.Practices.ServiceLocation.dll" />
+                <File Id="System.Windows.Interactivity.dll"
+                      Source="$(var.CssSpriteSheetGenerator.Gui.TargetDir)\System.Windows.Interactivity.dll" />
+                <File Id="WPFToolkit.dll"
+                      Source="$(var.CssSpriteSheetGenerator.Gui.TargetDir)\WPFToolkit.dll" />
+            </Component>
+        </DirectoryRef>
+        <DirectoryRef Id="ApplicationProgramsFolder">
+            <Component Id="ApplicationShortcut" Guid="4B41C106-6D63-4B18-B796-58C39533DD51">
+                <Shortcut Id="ApplicationStartMenuShortcut"
+                          Name="CSS Sprite Sheet Generator"
+                          Description="CSS Sprite Sheet Generator solves issues with using web-based generators. Drag and drop, hit save, and you're done!"
+                          Target="[#CssSpriteSheetGenerator.Gui.exe]"
+                          WorkingDirectory="INSTALLFOLDER" />
+                <Shortcut Id="UninstallProduct"
+                          Name="Uninstall CSS Sprite Sheet Generator"
+                          Target="[SystemFolder]msiexec.exe"
+                          Arguments="/x [ProductCode]"
+                          Description="Uninstalls CSS Sprite Sheet Generator" />
+                <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall" />
+                <RegistryValue Root="HKCU"
+                               Key="Software\Microsoft\CSS Sprite Sheet Generator"
+                               Name="installed"
+                               Type="integer"
+                               Value="1"
+                               KeyPath="yes" />
+            </Component>
+        </DirectoryRef>
+        <DirectoryRef Id="DesktopFolder">
+            <Component Id="DesktopShortcut" Guid="50542DF2-B023-451C-A392-B4A61CCDFFAA">
+                <Shortcut Id="ApplicationDesktopShortcut"
+                          Name="CSS Sprite Sheet Generator"
+                          Description="CSS Sprite Sheet Generator solves issues with using web-based generators. Drag and drop, hit save, and you're done!"
+                          Target="[#CssSpriteSheetGenerator.Gui.exe]"
+                          WorkingDirectory="INSTALLFOLDER" />
+                <RegistryValue Root="HKCU"
+                               Key="Software\Microsoft\CSS Sprite Sheet Generator"
+                               Name="installed"
+                               Type="integer"
+                               Value="1"
+                               KeyPath="yes" />
+            </Component>
+        </DirectoryRef>
+
+        <!-- Step 3: Tell WiX to install the files -->
+        <Feature Id="ProductFeature" Title="CSS Sprite Sheet Generator" Level="1">
+            <ComponentRef Id="CssSpriteSheetGenerator.Gui.Binaries" />
+            <ComponentRef Id="ApplicationShortcut" />
+            <ComponentRef Id="DesktopShortcut" />
+        </Feature>
+    </Product>
+</Wix>

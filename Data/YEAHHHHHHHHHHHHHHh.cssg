@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SpriteSheetGenerator xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.toofz.com/cssg">
+    <SpriteSheets>
+        <SpriteSheet>
+            <ClassName>Close</ClassName>
+            <X>427</X>
+            <Y>288</Y>
+            <ImageFile>Close.png</ImageFile>
+            <Sprites>
+                <Sprite>
+                    <ClassName>ExampleSprite</ClassName>
+                    <X>0</X>
+                    <Y>0</Y>
+                    <Width>16</Width>
+                    <Height>16</Height>
+                </Sprite>
+            </Sprites>
+            <Width>16</Width>
+            <Height>16</Height>
+        </SpriteSheet>
+    </SpriteSheets>
+</SpriteSheetGenerator>

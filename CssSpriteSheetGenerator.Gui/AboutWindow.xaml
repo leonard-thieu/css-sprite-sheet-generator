@@ -1,0 +1,12 @@
+﻿<Window x:Class="CssSpriteSheetGenerator.Gui.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="About CSS Sprite Sheet Generator"
+        Icon="/CssSpriteSheetGenerator.Gui;component/Images/Css.ico"
+        Height="300" Width="300">
+    <Grid>
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                   FontSize="24"
+                   Text="The About Window" />
+    </Grid>
+</Window>

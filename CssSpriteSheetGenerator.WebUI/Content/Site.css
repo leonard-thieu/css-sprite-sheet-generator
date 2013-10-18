@@ -1,0 +1,74 @@
+﻿body {
+    padding-top:    60px;
+    padding-bottom: 40px;
+}
+
+a {
+    color:           #ba4646;
+    text-decoration: none;
+}
+
+a:hover, a:focus {
+    color:           #550000;
+    text-decoration: underline;
+}
+
+.hero-unit {
+    padding:     0;
+    font-family: 'Lato', sans-serif;
+}
+
+.hero-unit h1 {
+    font-size:   93px;
+    font-weight: 100;
+    line-height: 16px;
+
+    margin:      10px 0;
+    padding:     130px 0 80px 0;
+}
+
+.hero-unit p {
+    font-size:      16px;
+    font-weight:    300;
+    line-height:    20px;
+
+    padding-bottom: 30px;
+}
+
+.navbar-inverse .navbar-inner {
+    background-image: linear-gradient(to bottom, #af231e, #9e120d);
+}
+
+.navbar-inverse .brand, .navbar-inverse a, .navbar-inverse .nav > li > a:focus, .navbar-inverse .nav > li > a {
+    color: #ffffff;
+}
+
+.navbar-inner a {
+    border-bottom: 2px solid rgba(0, 0, 0, 0);
+}
+
+.navbar-inner a:hover {
+    border-bottom-color: #ffffff;
+}
+
+.well, .hero-unit {
+    background-color: #823a3a;
+}
+
+.btn-primary {
+    background-color: #6d0000;
+    background-image: linear-gradient(to bottom, #880000, #440000);
+}
+
+.btn-primary:hover {
+    background-color: #440000;
+}
+
+h3 {
+    font-family: 'Raleway', sans-serif;
+}
+
+/* Awful hack */
+.height170 {
+    height: 170px;
+}

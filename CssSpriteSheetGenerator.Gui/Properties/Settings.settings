@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CssSpriteSheetGenerator.Gui.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="HelpFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Help\Documentation.chm</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

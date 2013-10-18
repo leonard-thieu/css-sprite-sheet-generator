@@ -1,0 +1,202 @@
+﻿<Window x:Class="CssSpriteSheetGenerator.Gui.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:a="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4"
+        xmlns:p="clr-namespace:CssSpriteSheetGenerator.Gui.Properties"
+        xmlns:c="clr-namespace:CssSpriteSheetGenerator.Gui.Controls"
+        xmlns:m="clr-namespace:CssSpriteSheetGenerator.Models;assembly=CssSpriteSheetGenerator.Models"
+        Title="{Binding FileName, StringFormat='{}{0} - CSS Sprite Sheet Generator v0.9 Beta', FallbackValue='CSS Sprite Sheet Generator v0.9 Beta'}"
+        Icon="/CssSpriteSheetGenerator.Gui;component/Images/Css.ico"
+        SizeToContent="WidthAndHeight"
+        DataContext="{Binding MainWindowViewModel, Source={StaticResource ViewModelLocator}}"
+        Background="{DynamicResource WindowBackgroundBrush}"
+        FontFamily="{DynamicResource Raleway}">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <a:EventToCommand Command="{Binding Exit, FallbackValue={x:Null}}" PassEventArgsToCommand="True" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    
+    <Window.Resources>
+        <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="FontWeight" Value="Medium" />
+            <Setter Property="MinWidth" Value="93" />
+        </Style>
+
+        <Style x:Key="MenuHeader" TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        </Style>
+
+        <Style TargetType="c:RelayMenuItem">
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="Black" />
+        </Style>
+    </Window.Resources>
+
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding New, FallbackValue={x:Null}}"
+                    Gesture="Ctrl+N" />
+        <KeyBinding Command="{Binding SaveImage, FallbackValue={x:Null}}"
+                    Gesture="Ctrl+Shift+A" />
+        <KeyBinding Command="{Binding SaveCss, FallbackValue={x:Null}}"
+                    Gesture="Ctrl+Shift+C" />
+        <KeyBinding Command="{Binding Import, FallbackValue={x:Null}}"
+                    Gesture="Ctrl+O" />
+        <KeyBinding Command="{Binding Export, FallbackValue={x:Null}}"
+                    Gesture="Ctrl+S" />
+        <KeyBinding Command="{Binding Exit, FallbackValue={x:Null}}"
+                    Gesture="Alt+F4" />
+        <KeyBinding Command="{Binding Cut, FallbackValue={x:Null}}"
+                    Gesture="Ctrl+X" />
+        <KeyBinding Command="{Binding Options, FallbackValue={x:Null}}"
+                    Gesture="F10" />
+        <KeyBinding Command="{Binding Help, FallbackValue={x:Null}}"
+                    Gesture="F1" />
+        <KeyBinding Command="{Binding Debug, FallbackValue={x:Null}}"
+                    Gesture="Ctrl+D" />
+    </Window.InputBindings>
+
+    <DockPanel>
+        <!-- Menu Bar -->
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File" Style="{StaticResource MenuHeader}">
+                <c:RelayMenuItem Command="{Binding New}" />
+                <Separator />
+                <c:RelayMenuItem Command="{Binding SaveImage}" />
+                <c:RelayMenuItem Command="{Binding SaveCss}" />
+                <Separator />
+                <c:RelayMenuItem Command="{Binding Import}" />
+                <c:RelayMenuItem Command="{Binding Export}" />
+                <Separator />
+                <c:RelayMenuItem Command="{Binding Exit}" />
+            </MenuItem>
+            <!--<MenuItem Header="_Edit" Style="{StaticResource MenuHeader}">
+                <c:RelayMenuItem Command="{Binding Cut}" />
+            </MenuItem>
+            <MenuItem Header="_View" Style="{StaticResource MenuHeader}">
+                <c:RelayMenuItem Command="{Binding Options}" />
+            </MenuItem>-->
+            <MenuItem Header="_Help" Style="{StaticResource MenuHeader}">
+                <c:RelayMenuItem Command="{Binding Help}" />
+                <Separator />
+                <c:RelayMenuItem Command="{Binding About}" />
+            </MenuItem>
+        </Menu>
+
+        <!-- Controls, Options, and the Main Part -->
+        <Grid DataContext="{Binding SpriteSheetViewModel}"
+              DockPanel.Dock="Top" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="*" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Margin="0,0,0,10"
+                        Orientation="Horizontal">
+                <!-- Import/Export -->
+                <!--<StackPanel>
+                    <Button Content="{x:Static p:Resources.ImportHeader}" Command="{Binding Import}" />
+                    <Button Content="{x:Static p:Resources.ExportHeader}" Command="{Binding Export}" />
+                </StackPanel>-->
+
+                <!-- Options -->
+                <StackPanel Width="300">
+                    <StackPanel.Resources>
+                        <Style TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
+                            <Setter Property="Width" Value="104" />
+                        </Style>
+
+                        <Style TargetType="Border">
+                            <Setter Property="Width" Value="150" />
+                            <Setter Property="Height" Value="23" />
+                        </Style>
+
+                        <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+                            <Setter Property="Width" Value="150" />
+                            <Setter Property="Height" Value="23" />
+                        </Style>
+                    </StackPanel.Resources>
+
+                    <DockPanel>
+                        <Label Content="Build Method" />
+                        <Border Background="White">
+                            <ComboBox ItemsSource="{Binding BuildMethods}" SelectedItem="{Binding BuildMethod}" />
+                        </Border>
+                    </DockPanel>
+                    <DockPanel>
+                        <Label Content="Horizontal Offset" />
+                        <TextBox Text="{Binding HorizontalOffset}" />
+                    </DockPanel>
+                    <DockPanel>
+                        <Label Content="Vertical Offset" />
+                        <TextBox Text="{Binding VerticalOffset}" />
+                    </DockPanel>
+                </StackPanel>
+
+                <StackPanel>
+                    <Button Content="Build" Command="{Binding Build}" />
+                </StackPanel>
+
+                <StackPanel>
+                    <Button Content="{x:Static p:Resources.SaveImageHeader}" Command="{Binding SaveImage}" />
+                    <Button Content="{x:Static p:Resources.SaveCssHeader}" Command="{Binding SaveCss}" />
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Main Part -->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="224" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Object Listing -->
+                <TreeView Margin="0,0,10,0"
+                          DataContext="{Binding SpriteSheetGenerator}"
+                          ItemsSource="{Binding SpriteSheets}">
+                    <TreeView.ItemContainerStyle>
+                        <Style TargetType="TreeViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Left" />
+                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                            <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                            <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+                        </Style>
+                    </TreeView.ItemContainerStyle>
+                    
+                    <TreeView.ItemTemplate>
+                        <HierarchicalDataTemplate DataType="{x:Type m:SpriteSheet}"
+                                                  ItemsSource="{Binding Sprites}">
+                            <TextBlock Text="{Binding ClassName}" />
+                            
+                            <HierarchicalDataTemplate.ItemContainerStyle>
+                                <Style TargetType="TreeViewItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                                    <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+                                </Style>
+                            </HierarchicalDataTemplate.ItemContainerStyle>
+                            
+                            <HierarchicalDataTemplate.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding ClassName}" />
+                                </DataTemplate>
+                            </HierarchicalDataTemplate.ItemTemplate>
+                        </HierarchicalDataTemplate>
+                    </TreeView.ItemTemplate>
+                </TreeView>
+
+                <!-- Drop Target -->
+                <c:DropTarget Grid.Column="1"
+                              MinWidth="532" MinHeight="532" />
+            </Grid>
+        </Grid>
+    </DockPanel>
+</Window>

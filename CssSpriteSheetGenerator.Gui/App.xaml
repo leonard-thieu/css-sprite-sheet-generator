@@ -1,0 +1,54 @@
+﻿<Application x:Class="CssSpriteSheetGenerator.Gui.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:v="clr-namespace:CssSpriteSheetGenerator.Gui.ViewModels"
+             mc:Ignorable="d"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BugFix" />
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <v:ViewModelLocator x:Key="ViewModelLocator" d:IsDataSource="True" />
+
+                    <FontFamily x:Key="Raleway">Fonts/Raleway/#Raleway</FontFamily>
+                    <FontFamily x:Key="RobotoCondensed">Fonts/Roboto/#Roboto Condensed</FontFamily>
+                </ResourceDictionary>
+
+                <ResourceDictionary Source="Themes/ShinyRed/ShinyRed.xaml" />
+
+                <ResourceDictionary>
+                    <Style TargetType="Image">
+                        <Setter Property="Stretch" Value="None" />
+                    </Style>
+
+                    <Style TargetType="TreeViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Left" />
+                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                    </Style>
+
+                    <Style TargetType="ComboBoxItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Left" />
+                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                    </Style>
+
+                    <Style TargetType="MenuItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Left" />
+                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                    </Style>
+
+                    <Style TargetType="RowDefinition">
+                        <Setter Property="Height" Value="Auto" />
+                    </Style>
+
+                    <Style TargetType="ColumnDefinition">
+                        <Setter Property="Width" Value="Auto" />
+                    </Style>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
